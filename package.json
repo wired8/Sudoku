@@ -1,0 +1,35 @@
+{
+  "name": "sudoku",
+  "version": "1.0.0",
+  "description": "Sudoku is a logic-based, combinatorial number-placement puzzle.",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wired8/Sudoku.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wired8/Sudoku/issues"
+  },
+  "homepage": "https://github.com/wired8/Sudoku#readme"
+
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "mocha": "^3.5.3"
+  },
+  "dependencies": {
+    "async": "^3.1.0",
+    "axios": "^0.19.0",
+    "diff-json": "^2.0.0",
+    "express": "^4.16.3"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "mocha --timeout 20000 --recursive"
+  },
+  "engines": {
+    "node": ">=6.11.0"
+  }
+}
