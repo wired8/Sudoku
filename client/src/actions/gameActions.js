@@ -20,7 +20,7 @@ export const solutionCheck = (currentBoard, solutionBoard) => {
 
 export const solve = (currentBoard) => {
   return {
-    type: SOLVE
+    type: SOLVE, currentBoard
   }
 };
 
