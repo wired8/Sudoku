@@ -1,8 +1,8 @@
 'use strict';
 
-const orders = require('./orders');
+const game = require('./game');
 
 module.exports = (router) => {
-  orders(router);
+  game(router);
   return router;
 };

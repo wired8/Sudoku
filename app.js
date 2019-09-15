@@ -4,7 +4,10 @@ const express = require('express'),
   router = express.Router(),
   app = express(),
   bodyParser = require('body-parser'),
-  port = process.env.PORT || 3000;
+  cors = require('cors'),
+  port = process.env.PORT || 3001;
+
+app.use(cors());
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -12,7 +15,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 const routes = require('./routes/index.js');
-app.use('/', routes(router));
+app.use('/api/v1', routes(router));
+app.use('/api', routes(router));
 
 // 404
 app.use(function(req, res, next) {

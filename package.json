@@ -12,8 +12,7 @@
   "bugs": {
     "url": "https://github.com/wired8/Sudoku/issues"
   },
-  "homepage": "https://github.com/wired8/Sudoku#readme"
-
+  "homepage": "https://github.com/wired8/Sudoku#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
@@ -22,6 +21,7 @@
   "dependencies": {
     "async": "^3.1.0",
     "axios": "^0.19.0",
+    "cors": "^2.8.5",
     "diff-json": "^2.0.0",
     "express": "^4.16.3"
   },
