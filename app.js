@@ -25,6 +25,7 @@ app.use(function(req, res, next) {
 
 // 500 - Any server error
 app.use(function(err, req, res, next) {
+  console.log(err);
   return res.status(500).send({ error: err.message });
 });
 

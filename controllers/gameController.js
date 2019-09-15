@@ -6,17 +6,23 @@ const Sudoku = require('../lib/sudoku'),
 exports.newGame = function(level, callback) {
   level = level || 27;
   const sudoku = new Sudoku(level);
+  var merged = [].concat.apply([], sudoku.getBoard());
+
+  console.log(sudoku.getBoard());
   const board = {
-    board: sudoku.getBoard()
+    board: merged
   };
   return callback(null, board);
 };
 
 
 exports.solve = function(puzzle, callback) {
-  const solver = new Solver(puzzle);
+  const result = new Solver(puzzle).solution();
+  console.log('---------------');
+  console.log(result);
+  console.log('-------END--------');
   const solution = {
-    solution: solver.solution()()
+    board: result
   };
   return callback(null, solution);
 };

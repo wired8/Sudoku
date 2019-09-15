@@ -3,13 +3,12 @@ import Grid from "./grid";
 import SudukoBoard from "./board";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { NewGame } from '../api/methods/game';
-import Solver from "./solver";
+import { NewGame, Solve } from '../api/methods/game';
 
 class SudokuGame extends Component {
   constructor(props) {
     super(props);
-    this.state = { puzzle: this.props.puzzle };
+    this.state = { puzzle: this.props.board.currentBoard };
   }
 
   componentWillMount() {
@@ -17,11 +16,8 @@ class SudokuGame extends Component {
   }
 
   solve() {
-    const { puzzle } = this.state,
-      grid = new Grid(puzzle);
-
-    new Solver(grid).solve();
-    this.setState({ puzzle: grid.toFlatString() });
+    console.log('SOLVE!',this.props.board.currentBoard);
+    this.props.Solve(this.props.board.currentBoard);
   }
 
   onCellValueEdited(row, col, value) {
@@ -54,7 +50,11 @@ class SudokuGame extends Component {
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({NewGame: NewGame}, dispatch)
+  //return bindActionCreators({NewGame: NewGame, Solve: Solve}, dispatch)
+  return {
+    NewGame: (args) => dispatch(NewGame()),
+    Solve: (args) => dispatch(Solve(args)),
+  };
 }
 
 function mapStateToProps(state){

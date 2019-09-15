@@ -1,4 +1,4 @@
-import { NEW_GAME, ENTER_VALUE, SOLUTION_CHECK, GET_SCORE } from './types'
+import { NEW_GAME, ENTER_VALUE, SOLUTION_CHECK, SOLVE } from './types'
 
 export const newGame = (startBoard) => {
   return {
@@ -18,8 +18,9 @@ export const solutionCheck = (currentBoard, solutionBoard) => {
   }
 };
 
-export const getScore = (scores) => {
+export const solve = (currentBoard) => {
   return {
-    type: GET_SCORE, scores
+    type: SOLVE
   }
 };
+
