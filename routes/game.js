@@ -11,10 +11,19 @@ module.exports = function (router) {
       });
     });
 
+  router.route('/game/validate')
+    .post(function (req, res, next) {
+      const p = req.body.puzzle;
+      const puzzle =  chunk(p.replace(/, +/g, ",").split(",").map(Number),9);
+      gameController.validate(puzzle, function (err, result) {
+        return res.json(result);
+      });
+    });
+
   router.route('/game/solve')
     .post(function (req, res, next) {
-      const e = req.body.puzzle;
-      const puzzle =  chunk(e.replace(/, +/g, ",").split(",").map(Number),9);
+      const p = req.body.puzzle;
+      const puzzle =  chunk(p.replace(/, +/g, ",").split(",").map(Number),9);
       gameController.solve(puzzle, function (err, result) {
         return res.json(result);
       });

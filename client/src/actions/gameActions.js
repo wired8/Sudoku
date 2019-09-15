@@ -1,8 +1,8 @@
-import { NEW_GAME, ENTER_VALUE, SOLUTION_CHECK, SOLVE } from './types'
+import { NEW_GAME, ENTER_VALUE, SOLUTION_CHECK, SOLVE, VALIDATE } from './types'
 
-export const newGame = (startBoard) => {
+export const newGame = (startBoard, errorCells) => {
   return {
-    type: NEW_GAME, startBoard
+    type: NEW_GAME, startBoard, errorCells
   }
 };
 
@@ -23,4 +23,11 @@ export const solve = (currentBoard) => {
     type: SOLVE, currentBoard
   }
 };
+
+export const validate = (errorCells) => {
+  return {
+    type: VALIDATE, errorCells
+  }
+};
+
 

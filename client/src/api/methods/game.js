@@ -1,4 +1,4 @@
-import { newGame, solve } from '../../actions/gameActions.js';
+import { newGame, solve, validate } from '../../actions/gameActions.js';
 
 export function NewGame() {
   return (dispatch) => {
@@ -21,5 +21,20 @@ export function Solve(puzzle) {
     })
       .then(response => response.json())
       .then((json) => dispatch(solve(json.board)));
+  };
+}
+
+export function Validate(puzzle) {
+  return (dispatch) => {
+    dispatch({ type: 'VALIDATE' });
+    const e = encodeURIComponent(puzzle);
+    const requestBody = `puzzle=${e}`;
+    return fetch('http://localhost:3001/api/v1/game/validate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: requestBody
+    })
+      .then(response => response.json())
+      .then((json) => dispatch(validate(json.errors)));
   };
 }

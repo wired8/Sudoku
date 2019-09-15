@@ -1,15 +1,20 @@
-import { NEW_GAME, ENTER_VALUE, SOLVE } from '../actions/types';
+import { NEW_GAME, ENTER_VALUE, SOLVE, VALIDATE } from '../actions/types';
 
 export default function boardReducer(state = {}, action) {
   switch (action.type) {
     case NEW_GAME: {
-      const { type, startBoard } = action;
-      return { ...state, currentBoard: [...startBoard], startBoard, start_time: Date.now(), end_time: null, solved: false }
+      const { type, startBoard, errorCells } = action;
+      return { ...state, currentBoard: [...startBoard], startBoard, errorCells: errorCells, solved: false }
     }
 
     case SOLVE: {
       const { type, currentBoard } = action;
-      return { ...state, currentBoard: currentBoard, start_time: Date.now(), end_time: null, solved: false }
+      return { ...state, currentBoard: currentBoard, errorCells: [], solved: false }
+    }
+
+    case VALIDATE: {
+      const { type, errorCells } = action;
+      return { ...state, errorCells: errorCells, solved: false }
     }
 
     case ENTER_VALUE: {
