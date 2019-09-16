@@ -87,6 +87,15 @@ span {
     padding: 20px 2px;
 }
 
+.buttons-container button {
+    margin-right:16px;
+}
+
+.buttons-container button:last-child {
+    margin-right:0px;
+}
+
+
 .button {
     min-width: 154px;
     background-color: #3588cc;
@@ -97,7 +106,6 @@ span {
     text-align: center;
     text-decoration: none;
     font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
-    margin-left: 50px;
     cursor: pointer;
     transition-duration: 0.25s;
     outline: none !important;
