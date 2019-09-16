@@ -35,7 +35,7 @@ export default class Square extends Component {
   getCellStyling(row, col) {
     const board = this.props.currentBoard;
     const index = (row * 9) + col;
-    if (this.props.currentBoard && this.props.currentBoard[index] && this.props.isSolved) {
+    if (this.props.solvedCells[index] && this.props.isSolved) {
       return 'solved-cell';
     }
     if (this.props.errorCells && this.props.errorCells[index]) {

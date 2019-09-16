@@ -21,7 +21,9 @@ class SudukoBoard extends Component {
                       row={cell.row}
                       col={cell.col}
                       id={`cell-${cellCount++}`}
+                      originalBoard={this.props.board.originalBoard}
                       currentBoard={this.props.board.currentBoard}
+                      solvedCells={this.props.board.solvedCells}
                       errorCells={this.props.board.errorCells}
                       isSolved={this.props.board.solved}
                       onCellValueChange={this.props.onCellValueChange}

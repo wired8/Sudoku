@@ -26,7 +26,7 @@ export function Solve(puzzle) {
   };
 }
 
-export function Validate(puzzle) {
+export function Validate(index, puzzle) {
   return (dispatch) => {
     dispatch({ type: 'VALIDATE' });
     const e = encodeURIComponent(puzzle);
@@ -37,6 +37,6 @@ export function Validate(puzzle) {
       body: requestBody
     })
       .then(response => response.json())
-      .then((json) => dispatch(validate(json.errors)));
+      .then((json) => dispatch(validate(index, json.errors)));
   };
 }

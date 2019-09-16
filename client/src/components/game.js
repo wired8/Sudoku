@@ -3,7 +3,7 @@ import SudukoBoard from "./board";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {NewGame, Solve, Validate} from '../api/methods/game';
-import {enterValue, validate} from '../actions/gameActions';
+import {enterValue, validate, resetSolution, resetBoard} from '../actions/gameActions';
 
 class SudokuGame extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class SudokuGame extends Component {
   }
 
   solve() {
-    this.props.Solve(this.props.board.originalBoard);
+    this.props.Solve(this.props.board.currentBoard);
   }
 
   onCellValueEdited(row, col, value) {
@@ -24,15 +24,23 @@ class SudokuGame extends Component {
       value = 0;
     }
     this.props.dispatch(enterValue(index, parseInt(value, 10)));
-    this.props.Validate(this.props.board.currentBoard);
+    this.props.Validate(index, this.props.board.currentBoard);
   }
 
   newGame() {
     this.props.NewGame();
   }
 
+  resetBoard() {
+    this.props.ResetBoard();
+  }
+
+  resetSolution() {
+    this.props.ResetSolution(this.props.board.originalBoard);
+  }
+
   isInt(value) {
-    return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
+    return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value));
   }
 
   render() {
@@ -43,10 +51,34 @@ class SudokuGame extends Component {
           onCellValueChange={this.onCellValueEdited.bind(this)}
         />
         <div className={'buttons-container'}>
-          <button className={'button'} onClick={() => this.solve()}><span>Solve!</span></button>
-          <button className={'button'} onClick={() => this.newGame()}><span>New Game</span></button>
+          {this.renderSolveClearButton()}
+          {this.renderGenerateResetButton()}
         </div>
       </div>
+    );
+  }
+
+  renderSolveClearButton() {
+    return this.props.board.solved ? (
+      <button className={'button'} onClick={() => this.resetSolution()}>
+        <span>Clear</span>
+      </button>
+    ) : (
+      <button className={'button'} onClick={() => this.solve()} disabled={!this.props.board.isValid}>
+        <span>Solve!</span>
+      </button>
+    );
+  }
+
+  renderGenerateResetButton() {
+    return this.props.board.isEmpty ? (
+      <button className={'button'} onClick={() => this.newGame()}>
+        <span>Generate</span>
+      </button>
+    ) : (
+      <button className={'button'} onClick={() => this.resetBoard()}>
+        <span>Reset</span>
+      </button>
     );
   }
 }
@@ -55,7 +87,9 @@ function mapDispatchToProps(dispatch){
   return {
     NewGame: (args) => dispatch(NewGame()),
     Solve: (args) => dispatch(Solve(args)),
-    Validate: (args) => dispatch(Validate(args)),
+    Validate: (arg1, arg2) => dispatch(Validate(arg1, arg2)),
+    ResetBoard: (args) => dispatch(resetBoard(args)),
+    ResetSolution: (args) => dispatch(resetSolution(args)),
     dispatch
   };
 }
