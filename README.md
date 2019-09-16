@@ -27,7 +27,7 @@ Find row, col of an unassigned cell
 ## Links 
 
 - The web-application can be visited [here](https://sudoku.wired8.com/)
-- A guide on how to play Sudoku can be found [here](http://www.playsudoku.eu/sudoku-rules)
+- A guide on how to play Sudoku can be found [here](http://www.sudokuessentials.com/how_to_play_sudoku.html)
 - An excellent article on Sudoku Backtracking [here](https://hackernoon.com/sudoku-and-backtracking-6613d33229af)
 
 ## Credit
