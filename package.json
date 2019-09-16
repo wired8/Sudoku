@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/wired8/Sudoku.git"
   },
-  "author": "",
+  "author": "Phil Jepsen",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/wired8/Sudoku/issues"
@@ -16,6 +16,9 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "concurrently": "^4.1.2",
+    "coveralls": "3.0.0",
+    "istanbul": "0.4.5",
     "mocha": "^3.5.3"
   },
   "dependencies": {
@@ -26,7 +29,9 @@
     "express": "^4.16.3"
   },
   "scripts": {
-    "start": "node app.js",
+    "client": "cd client && npm start",
+    "server": "node app.js",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
     "test": "mocha --timeout 20000 --recursive"
   },
   "engines": {
