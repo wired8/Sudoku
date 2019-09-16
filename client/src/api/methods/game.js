@@ -1,6 +1,6 @@
 import { newGame, solve, validate } from '../../actions/gameActions.js';
 
-const apiUrl = process.env.NODE_ENV === 'production' ? 'http://sudokuapi.wired8.com' : 'http://localhost:3001';
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://sudokuapi.wired8.com' : 'http://localhost:3001';
 
 export function NewGame() {
   return (dispatch) => {
