@@ -4,16 +4,17 @@ export default function boardReducer(state = {}, action) {
   switch (action.type) {
     case NEW_GAME: {
       const { type, startBoard, errorCells } = action;
-      return { ...state, currentBoard: [...startBoard], startBoard, errorCells: errorCells, solved: false }
+      return { ...state, currentBoard: [...startBoard], originalBoard: [...startBoard], errorCells: errorCells, solved: false }
     }
 
     case SOLVE: {
       const { type, currentBoard } = action;
-      return { ...state, currentBoard: currentBoard, errorCells: [], solved: false }
+      return { ...state, currentBoard: currentBoard, errorCells: [], solved: true }
     }
 
     case VALIDATE: {
       const { type, errorCells } = action;
+
       return { ...state, errorCells: errorCells, solved: false }
     }
 

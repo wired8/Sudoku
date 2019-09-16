@@ -15,12 +15,14 @@ class SudokuGame extends Component {
   }
 
   solve() {
-    this.props.Solve(this.props.board.currentBoard);
+    this.props.Solve(this.props.board.originalBoard);
   }
 
   onCellValueEdited(row, col, value) {
-    const i = row * 9;
-    const index = i+col;
+    const index = (row * 9) + col;
+    if (!this.isInt(value)) {
+      value = 0;
+    }
     this.props.dispatch(enterValue(index, parseInt(value, 10)));
     this.props.Validate(this.props.board.currentBoard);
   }
@@ -29,16 +31,20 @@ class SudokuGame extends Component {
     this.props.NewGame();
   }
 
+  isInt(value) {
+    return !isNaN(value) && (function(x) { return (x | 0) === x; })(parseFloat(value))
+  }
+
   render() {
     return (
-      <div className="game">
+      <div className="heading">
         <h1>Sudoku Solver</h1>
         <SudukoBoard
           onCellValueChange={this.onCellValueEdited.bind(this)}
         />
-        <div className="buttons">
-          <button onClick={() => this.solve()}>Solve It!</button>
-          <button onClick={() => this.newGame()}>New Game</button>
+        <div className={'buttons-container'}>
+          <button className={'button'} onClick={() => this.solve()}><span>Solve!</span></button>
+          <button className={'button'} onClick={() => this.newGame()}><span>New Game</span></button>
         </div>
       </div>
     );
