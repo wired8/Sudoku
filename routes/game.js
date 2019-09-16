@@ -5,7 +5,7 @@ module.exports = function (router) {
 
   router.route('/game/:level?')
     .get(function (req, res, next) {
-      const level = req.params.level || 27;
+      const level = 80; //req.params.level || 27;
       gameController.newGame(level, function (err, result) {
         return res.json(result);
       });

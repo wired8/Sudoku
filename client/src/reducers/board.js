@@ -14,8 +14,10 @@ export default function boardReducer(state = {}, action) {
 
     case VALIDATE: {
       const { type, errorCells } = action;
-
-      return { ...state, errorCells: errorCells, solved: false }
+      const errors = errorCells ? errorCells.filter(x => x === true).length : -1;
+      const completed = state.currentBoard.filter(x => x !== 0).length;
+      const solved = errors === 0 && completed === 81;
+      return { ...state, errorCells: errorCells, solved: solved }
     }
 
     case ENTER_VALUE: {

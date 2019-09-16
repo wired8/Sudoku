@@ -38,7 +38,7 @@ class SudokuGame extends Component {
   render() {
     return (
       <div className="heading">
-        <h1>Sudoku Solver</h1>
+        <h1>Sudoku</h1>
         <SudukoBoard
           onCellValueChange={this.onCellValueEdited.bind(this)}
         />
