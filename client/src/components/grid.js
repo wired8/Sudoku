@@ -19,7 +19,6 @@ const EMPTY = (() => {
 
 export default class Grid {
     constructor(input = EMPTY) {
-        console.log(input);
         let currentRow;
         this.rows = [];
 
