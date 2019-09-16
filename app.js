@@ -30,7 +30,7 @@ app.use(function(err, req, res, next) {
 
 app.listen(port);
 
-console.log('Listen',port);
+console.log('Sudoku API Listening on port:',port);
 
 module.exports = app;
 

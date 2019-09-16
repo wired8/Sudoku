@@ -27,10 +27,11 @@ exports.validate = function(board, callback) {
 
 exports.solve = function(puzzle, callback) {
   const solver = new Solver(50000);
-  solver.solve(puzzle);
+  const result = solver.solve(puzzle);
   const merged = [].concat.apply([], puzzle);
   const solution = {
-    board: merged
+    board: merged,
+    solved: result
   };
   return callback(null, solution);
 };
